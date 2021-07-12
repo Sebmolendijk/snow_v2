@@ -163,7 +163,7 @@ SentinelIncidents.prototype = {
 
 
                     // custom mapping
-                    customMapping.setCustomMapping(incidents[i],incidentAlerts, incidentEntities);
+                    customMapping.setCustomMapping(incidents[i],incidentAlerts, incidentEntities, environment);
 
                     if(incidentEntities.length > 0) {
                         var html = entitiesUtils.entitiesToHtmlTable(incidentEntities);
@@ -391,7 +391,7 @@ SentinelIncidents.prototype = {
                         //entities
 
                         // Custom mapping
-                        customMapping.setCustomMapping(modifiedIncidents[i],incidentAlerts, incidentEntities);
+                        customMapping.setCustomMapping(modifiedIncidents[i],incidentAlerts, incidentEntities, environment);
 
                         // Update metadata counters
                         var incidentMetadata = appUtils.setIncidentMetadata(myObj.sys_id, incidentAlerts.length, incidentEntities.length, environment.sys_id);

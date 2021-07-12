@@ -2,7 +2,7 @@ var CustomMapping = Class.create();
 CustomMapping.prototype = {
     initialize: function() {
     },
-    setCustomMapping: function(incident,incidentAlerts, incidentEntities) {
+    setCustomMapping: function(incident,incidentAlerts, incidentEntities, environment) {
         var entitiesUtils = new Entities();
         var incidentTable = gs.getProperty('x_557806_microsoft.incidentTableName');
         var incidentUniqueKey = gs.getProperty('x_557806_microsoft.incidentUniqueKey');
