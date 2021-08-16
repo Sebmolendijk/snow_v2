@@ -64,8 +64,18 @@
                 appUtils.log(httpStatus + ' - Sentinel Incident ' + incident[0].properties.incidentNumber + ' has been updated after snow updates.\nChanges: ' + JSON.stringify(changes));
             }
             else if(httpStatus == 409) {
-                httpStatus = sentinelIncidents.updateSentinelIncident(environment, myObj[incidentUniqueKey], properties);
-                appUtils.log(httpStatus + ' - Sentinel Incident ' + incident[0].properties.incidentNumber + ' has been updated after snow updates.\nChanges: ' + JSON.stringify(changes));
+                //In case of concurrency(etag conflict), retry max 5 times after a 1 sec sleep
+                for (var retry = 0; retry < 5; retry++) {
+                    appUtils.sleep(1000); //wait 1000 millisecconds
+                    httpStatus = sentinelIncidents.updateSentinelIncident(environment, myObj[incidentUniqueKey], properties);
+                    
+                    if(httpStatus == 200) {
+                        appUtils.log(httpStatus + ' - Sentinel Incident ' + incident[0].properties.incidentNumber + ' has been updated after snow updates.\nChanges: ' + JSON.stringify(changes));
+                    }
+                    else {
+                        appUtils.log(httpStatus + ' - Sentinel Incident ' + incident[0].properties.incidentNumber + ' snow updates retry ' + retry + ' failed.\nHttpStatus: ' + httpStatus + '\nChanges: ' + JSON.stringify(changes));
+                    }
+                }
             }
             else {
                 throw {'type': 'updateSentinelIncident', 'message': 'Business rule - update_changes_to_sentinelenvironment / updateSentinelIncident failed.\n' + httpStatus + '\nRequested changes: ' + JSON.stringify(changes)};

@@ -226,7 +226,7 @@ SentinelIncidents.prototype = {
     updateSentinelIncident: function (environment, incidentId, properties) {
         var appUtils = new AppUtils();
 
-        var incident = this.getSentinelIncidents(environment, incidentId)[0]; // getSentinelIncidents returns an array of one element
+        var incident = this.getSentinelIncidents(environment, incidentId)[0]; // getSentinelIncidents returns an array of one element. Used to get the latest etag for the incident
         incident.properties.status = properties.status;
         if(incident.properties.status.toLowerCase() == 'closed') {
             incident.properties.classification = properties.classification; //Sentinel requires reason when closing incident

@@ -10,6 +10,17 @@ AppUtils.prototype = {
     },
 
     //---------------------------------------------------------------
+    // Function used to add delay during execution
+    sleep: function(ms) {
+        var endSleep = new GlideDuration().getNumericValue() + ms;
+        while ( new GlideDuration().getNumericValue() < endSleep) {
+         //wait 
+        }
+
+        return;
+    },
+
+    //---------------------------------------------------------------
     // This function build the ServiceNow REST message to get the Sentinel incients
     buildRESTMessageV2: function(environment, skipToken, method, filter, incidentId, body) {
 
