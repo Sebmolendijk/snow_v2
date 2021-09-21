@@ -107,7 +107,7 @@ SentinelIncidents.prototype = {
                     if(incidents[i].properties.status.toLowerCase() == 'closed') {
                         var incidentClosureCode = incidents[i].properties.classification + '-' + incidents[i].properties.classificationReason;
 
-                        myObj.close_code.value = appUtils.getClosureCode(incidentClosureCode, null, 'sentinel');
+                        myObj.close_code = appUtils.getClosureCode(incidentClosureCode, null, 'sentinel');
                         myObj.close_notes = 'Incident was already closed in Sentinel. \nIncident classification: ' + incidentClosureCode + '\nClose comment: ' + incidents[i].properties.classificationComment;
                     }
 
@@ -347,7 +347,7 @@ SentinelIncidents.prototype = {
                         if(modifiedIncidents[i].properties.status.toLowerCase() == 'closed') {
                             var incidentClosureCode = modifiedIncidents[i].properties.classification + '-' + modifiedIncidents[i].properties.classificationReason;
 
-                            myObj.close_code.value = appUtils.getClosureCode(incidentClosureCode, null, 'sentinel');
+                            myObj.close_code = appUtils.getClosureCode(incidentClosureCode, null, 'sentinel');
                             myObj.close_notes = 'Incident was already closed in Sentinel. \nIncident classification: ' + incidentClosureCode + '\nClose comment: ' + modifiedIncidents[i].properties.classificationComment;
                         
                         }
