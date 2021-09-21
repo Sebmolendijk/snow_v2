@@ -33,7 +33,7 @@ AppUtils.prototype = {
 
         if(incidentId)  {
             if(incidentId.includes('/entities') || incidentId.includes('/alerts')) {
-                apiVersion = '2019-01-01-preview'; // alerts and entities only available through the preview version
+                apiVersion = '2021-04-01'; // alerts and entities only available through this version
             }
         }
 
